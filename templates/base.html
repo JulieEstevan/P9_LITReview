@@ -1,0 +1,20 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>LITRevu</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+        <header class="header">
+            <h1>LITRevu</h1>
+        </header>
+            {% block content %}{% endblock content %}
+            {% if user.is_authenticated %}
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit">Se deconnecter</button>
+            </form>
+        {% endif %}
+    </body>
+</html>

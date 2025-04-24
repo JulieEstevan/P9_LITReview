@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    <section class="signup">
+        <h2>Inscription</h2>
+        {% if form.errors %}
+            {{ form.errors }}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                <label for="{{ field.auto_id }}" class="hidden">{{ field.label }}</label>
+                {{field}} {{field.errors|striptags}}<br><br>
+            {% endfor %}
+            <a href="{% url 'login' %}" class="button">Retour</a>
+            <button type="submit" class="button">S'inscrire</button>
+        </form>
+    </section>
+{% endblock content %}
