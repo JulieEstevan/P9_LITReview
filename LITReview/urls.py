@@ -29,5 +29,5 @@ urlpatterns = [
     ), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/', authentication.views.signup_page, name='signup'),
-    path('flux/', main.views.flux, name='flux'),
+    path('home/', main.views.home, name='home'),
 ]

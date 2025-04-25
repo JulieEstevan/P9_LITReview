@@ -135,7 +135,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'authentication.User'  # Use the custom user model
 
 LOGIN_URL = 'login'
-
-LOGOUT_REDIRECT_URL = 'login'  # Redirect to the login page after logout
-
-LOGIN_REDIRECT_URL = 'flux'  # Redirect to the flux page after login
+LOGIN_REDIRECT_URL = 'home'  # Redirect to the home page after login
+LOGOUT_REDIRECT_URL = LOGIN_URL  # Redirect to the login page after logout
