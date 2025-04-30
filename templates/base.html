@@ -8,13 +8,22 @@
     <body>
         <header class="header">
             <h1>LITRevu</h1>
+            {% if user.is_authenticated %}
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="{% url 'home' %}">Flux</a></li>
+                    <li><a href="{% url 'posts' %}">Posts</a></li>
+                    <li><a href="{% url 'subscriptions' %}">Abonnements</a></li>
+                    <li>
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Se deconnecter</button>
+                        </form>
+                    </li>
+                </ul>
+            </nav>
+            {% endif %}
         </header>
             {% block content %}{% endblock content %}
-            {% if user.is_authenticated %}
-            <form action="{% url 'logout' %}" method="post">
-                {% csrf_token %}
-                <button type="submit">Se deconnecter</button>
-            </form>
-        {% endif %}
     </body>
 </html>

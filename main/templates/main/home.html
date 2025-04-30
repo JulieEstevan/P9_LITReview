@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main>
+        <div>
+            <a href="{% url 'create_ticket' %}">Demander une critique</a>
+            <a href="{% url 'create_review' %}">Creer une critique</a>
+        </div>
+        <section class="flux">
+            <h2>Flux d'actualités</h2>
+        </section>
+    </main>
+{% endblock content %}

@@ -30,4 +30,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/', authentication.views.signup_page, name='signup'),
     path('home/', main.views.home, name='home'),
+    path('posts/', main.views.posts, name='posts'),
+    path('subscriptions/', main.views.subscriptions, name='subscriptions'),
+    path('create_ticket/', main.views.create_ticket, name='create_ticket'),
+    path('create_review/', main.views.create_review, name='create_review'),
 ]
