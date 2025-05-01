@@ -32,6 +32,7 @@ urlpatterns = [
     path('home/', main.views.home, name='home'),
     path('posts/', main.views.posts, name='posts'),
     path('subscriptions/', main.views.subscriptions, name='subscriptions'),
+    path('unfollows/<int:follows_id>', main.views.unfollows, name='unfollows'),
     path('create_ticket/', main.views.create_ticket, name='create_ticket'),
     path('create_review/', main.views.create_review, name='create_review'),
 ]
