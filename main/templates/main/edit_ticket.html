@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
     <main>
-        <h2>Creer un ticket</h2>
-        <form method="POST" action="{% url 'create_ticket' %}" enctype="multipart/form-data">
+        <h2>Modifier le ticket</h2>
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <label for="id_title">Titre :</label>
             {{ form.title }}<br>
             <label for="id_description">Description :</label>
             {{ form.description }}<br>
-            <label for="id_image">Image :</label>
+            <label for="id_image">Image (optionnel):</label>
+            <img src="{{ ticket.image.url }}" alt="Image actuelle"><br>
             {{ form.image }}<br>
             <button type="submit">Envoyer</button>
         </form>

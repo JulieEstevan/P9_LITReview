@@ -1,0 +1,6 @@
+<h3>{{ post.title }}</h3>
+<small>{{ post.time_created }}</small>
+<p>{{ post.description }}</p>
+{% if post.image %}
+    <img src="{{ post.image.url }}" alt="Image de la couverture du livre / article">
+{% endif %}

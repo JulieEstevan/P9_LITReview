@@ -1,36 +1,45 @@
 {% extends 'base.html' %}
 {% block content %}
     <main>
-        <h2>Suivre d'autres utilisateurs</h2>
-        {% if error %}
-            {{ error }}
-        {% endif %}
-        <form method="POST" action="{% url 'subscriptions' %}">
-            {% csrf_token %}
-            <label for="username" class="hidden">Nom d'utilisateur :</label>
-            {{ form.username }}
-            <button type="submit">Suivre</button>
-        </form>
-        <h2>Abonnements</h2>
-        {% if not follows %}
-            <p>Aucun abonnement trouvé.</p>
-        {% endif %}
-        <ul>
-            {% for user in follows %}
-                <li>{{ user.followed_user }}</li>
-                <form method="POST" action="{% url 'unfollows' user.id %}">
-                    {% csrf_token %}
-                    <button type="submit">Désabonner</button>
-                </form>
-            {% endfor %}
-        </ul>
-        <h2>Abonnés</h2>
-        {% if not follows %}
-            <p>Aucun abonné trouvé.</p>
-        {% endif %}
-        <ul>
-            {% for user in followers %}
-                <li>{{ user.user }}</li>
-            {% endfor %}
+        <section>
+            <h2>Suivre d'autres utilisateurs</h2>
+            {% if error %}
+                {{ error }}
+            {% endif %}
+            <form method="POST" action="{% url 'subscriptions' %}">
+                {% csrf_token %}
+                <label for="username" class="hidden">Nom d'utilisateur :</label>
+                {{ form.username }}
+                <button type="submit">Suivre</button>
+            </form>
+        </section>
+        <section>
+            <h2>Abonnements</h2>
+            {% if not follows %}
+                <p>Aucun abonnement trouvé.</p>
+            {% else %}
+                <ul>
+                    {% for user in follows %}
+                        <li>{{ user.followed_user }}</li>
+                        <form method="POST" action="{% url 'unfollows' user.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Désabonner</button>
+                        </form>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </section>
+        <section>
+            <h2>Abonnés</h2>
+            {% if not followers %}
+                <p>Aucun abonné trouvé.</p>
+            {% else %}
+                <ul>
+                    {% for user in followers %}
+                        <li>{{ user.user }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </section>
     </main>
 {% endblock content %}

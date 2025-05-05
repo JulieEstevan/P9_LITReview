@@ -7,6 +7,33 @@
         </div>
         <section class="flux">
             <h2>Flux d'actualités</h2>
+            {% if not posts %}
+                <p>Aucun post trouvé.</p>
+            {% else %}
+                {% for post in posts %}
+                    <article>
+                        {% if post.post_type == 'ticket' %}
+                            {% if post.user == user %}
+                                <p>Vous avez demandé une critique</p>
+                            {% else %}
+                                <p>{{ post.user }} a demandé une critique</p>
+                            {% endif %}
+                            {% include './ticket_details.html' %}
+                            {% if review_already_exists != True %}
+                                <a href="{% url 'create_review_with_ticket' post.id %}">Ecrire une critique</a>
+                            {% endif %}
+                        {% elif post.post_type == 'review' %}
+                            {% if post.user == user %}
+                                <p>Vous avez écrit une critique</p>
+                            {% else %}
+                                <p>{{ post.user }} a écrit une critique</p>
+                            {% endif %}
+                            {% include './review_details.html' %}
+                        {% endif %}
+                    </article>
+                {% endfor %}
+                {% include './pagination.html' %}
+            {% endif %}
         </section>
     </main>
 {% endblock content %}

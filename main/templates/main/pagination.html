@@ -1,0 +1,13 @@
+<div class="pagination">
+    {% if posts.has_previous %}
+        <a href="?page={{ posts.previous_page_number }}">
+            <i class="fa-solid fa-arrow-left"></i>
+        </a>
+    {% endif %}
+    <span>Page {{ posts.number }} sur {{ posts.paginator.num_pages }}</span>
+    {% if posts.has_next %}
+        <a href="?page={{ posts.next_page_number }}">
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    {% endif %}
+</div>

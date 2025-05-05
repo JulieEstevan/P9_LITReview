@@ -2,6 +2,7 @@ from django import forms
 from . import models
 
 class TicketForm(forms.ModelForm):
+    image = forms.ImageField(required=False, widget=forms.FileInput)
     class Meta:
         model = models.Ticket
         fields = ('title', 'description', 'image')

@@ -2,16 +2,23 @@
 {% block content %}
     <main>
         <h2>Creer une critique</h2>
-        <form method="POST" action="{% url 'create_review' %}" enctype="multipart/form-data">
+        <form method="POST" action="{% url 'create_review_with_ticket' ticket.id %}" enctype="multipart/form-data">
             {% csrf_token %}
             <article>
-                <h3>Livre/Article</h3>
-                <label for="id_title">Titre :</label>
-                {{ ticket_form.title }}<br>
-                <label for="id_description">Description :</label>
-                {{ ticket_form.description }}<br>
-                <label for="id_image">Image (optionnel) :</label>
-                {{ ticket_form.image }}<br>
+                <p>Vous êtes en train de poster en réponse à</p>
+                <div>
+                    {% if ticket.user == user %}
+                        <p>Vous avez demandé une critique</p>
+                    {% else %}
+                        <p>{{ ticket.user }} a demandé une critique</p>
+                    {% endif %}
+                    <h3>{{ ticket.title }}</h3>
+                    <small>{{ ticket.time_created }}</small>
+                    <p>{{ ticket.description }}</p>
+                    {% if ticket.image %}
+                        <img src="{{ ticket.image.url }}" alt="Image de la couverture du livre / article">
+                    {% endif %}
+                </div>
             </article>
             <article>
                 <h3>Critique</h3>
@@ -28,7 +35,7 @@
                 </select><br>
                 <label for="id_body">Critique :</label>
                 {{ form.body }}<br>
-            <button type="submit">Envoyer</button>
+                <button type="submit">Envoyer</button>
             </article>
         </form>
     </main>

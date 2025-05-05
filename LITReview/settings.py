@@ -137,3 +137,6 @@ AUTH_USER_MODEL = 'authentication.User'  # Use the custom user model
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'  # Redirect to the home page after login
 LOGOUT_REDIRECT_URL = LOGIN_URL  # Redirect to the login page after logout
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR.joinpath('media/')

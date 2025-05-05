@@ -30,7 +30,13 @@ class Ticket(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.resize_image()
+        if self.image:
+            self.resize_image()
+    
+    def delete(self, *args, **kwargs):
+        if self.image:
+            self.image.delete(save=False)
+        super().delete(*args, **kwargs)
 
 class UserFollows(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
