@@ -1,11 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main>
+<main class="create-review-page">
+    <section class="create-review">
         <h2>Modifier la critique</h2>
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" autocomplete="off" class="create-review-form">
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Envoyer</button>
+            <article class="create-review-article">
+                <p class="create-review-text">Vous êtes en train de poster en réponse à</p>
+                <div class="ticket-details ticket">
+                    <small class="ticket-time">{{ form.instance.ticket.time_created }}</small>
+                    {% if form.instance.ticket.user == user %}
+                        <p class="ticket-user">Vous avez demandé une critique</p>
+                    {% else %}
+                        <p class="ticket-user">{{ form.instance.ticket.user }} a demandé une critique</p>
+                    {% endif %}
+                    <h3 class="article-title">{{ form.instance.ticket.title }}</h3>
+                    <div class="ticket-description">
+                    {% if form.instance.ticket.image %}
+                        <img src="{{ form.instance.ticket.image.url }}" alt="Image de la couverture du livre / article" class="ticket-image">
+                    {% endif %}
+                        <p class="ticket-description-text">
+                            <strong class="ticket-description-title">Description</strong><br>
+                            {{ form.instance.ticket.description }}
+                        </p>
+                    </div>
+                </div>
+            </article>
+            <article class="create-review-article">
+                <h3 class="article-title">Critique</h3>
+                <label for="id_headline">Titre :</label>
+                {{ form.headline }}
+                <label for="id_rating">Note :</label>
+                <select name="rating" id="id_rating" required>
+                    <option value="" disabled selected>Choisissez une note</option>
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
+                    <option value="3">★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
+                </select>
+                <label for="id_body">Critique :</label>
+                {{ form.body }}
+                <button type="submit" class="button">Envoyer</button>
+            </article>
         </form>
-    </main>
+    </section>
+</main>
 {% endblock content %}

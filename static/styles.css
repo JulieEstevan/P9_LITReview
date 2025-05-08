@@ -1,37 +1,441 @@
+/* CSS Document */
+
+/* ---------- GENERALS ---------- */
+
 * {
     font-family: Arial, Helvetica, sans-serif;
+    color: #30344B;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #E7E7EF;
+}
+
+.section-title {
+    font-size: 26px;
+    margin: 20px 0;
+    color: #30344B;
+}
+
+.article-title {
+    font-size: 20px;
+    margin: 10px 0 20px 0;
+    color: #30344B;
 }
 
 .hidden {
     display: none;
 }
 
-.header {
+input, textarea, input[type=file] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #E7E7EF;
+    box-shadow: 0 0 5px #E7E7EF;
+    font-size: 14px;
+    color: #30344B;
+}
+
+input[type=file] {
+    padding: 10 25%;
+    background-color: white;
+}
+
+input:focus, textarea:focus, input[type=file]:focus, select:focus {
+    box-shadow: 0 0 5px #585E89;
+    outline: none;
+}
+
+.button, input[type=file]::file-selector-button, select{
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    background-color: #585E89;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.button:hover, input[type=file]::file-selector-button:hover, select:hover {
+    background-color: #4E5480;
+    box-shadow: 0 0 5px #30344B;
+}
+
+option {
+    color: #30344B;
+    background-color: #E7E7EF;
+}
+
+/* ---------- HEADER ---------- */
+
+.header-offline {
     width: 100%;
     display: flex;
     justify-content: center;
-    border: 1px black solid;
+    background-color: #202332;
 }
 
-.loginpage {
+.header-online {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #202332;
+}
+
+.header-title {
+    display: flex;
+    margin: 0 50px;
+}
+
+.header-title h1, .header-title i {
+    color: white;
+}
+
+.header-nav {
+    margin: 0 50px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links .link {
+    color: white;
+    text-decoration: none;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.nav-links .link:hover {
+    color: #585E89;
+    text-decoration: underline;
+}
+
+.nav-links form {
+    margin: 0
+}
+
+.fa-book {
+    --fa-rotate-angle: -15deg;
+    font-size: 30px;
+    margin: 25px 10px;
+}
+
+/* ---------- LOGIN PAGE ---------- */
+
+.login-page {
     display: flex;
     justify-content: space-around;
 }
 
-.button{
-    border-radius: 5px;
-    border: 1px solid black;
-    font-size: 14px;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: black;
-    background-color: white;
+.login-page section {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F3F3F7;
+    border-radius: 25px;
+    margin-top: 150px;
+    padding: 25px;
 }
 
-.signup {
-    width: 100%;
+.login-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px black solid;
+    width: 80%;
+    gap: 15px;
+}
+
+/* ---------- SIGNUP PAGE ---------- */
+
+.signup-page {
+    display: flex;
+    justify-content: center;
+}
+
+.signup {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F3F3F7;
+    border-radius: 25px;
+    margin-top: 150px;
+    padding: 25px;
+}
+
+.signup form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 70%;
+    margin-top: 25px;
+}
+
+.signup .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+/* ---------- HOME PAGE AND POSTS PAGE ---------- */
+
+.home-page, .posts-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 50px;
+}
+
+.home-page .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 25px;
+    border-radius: 25px;
+    background-color: #F3F3F7;
+    width: 80%;
+    padding: 25px;
+}
+
+.flux, .posts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+    width: 80%;
+    background-color: #F3F3F7;
+    border-radius: 25px;
+    margin-bottom: 50px;
+    padding: 25px;
+}
+
+.posts-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* ---------- SUBSCRIPTIONS PAGE ---------- */
+
+.subscriptions-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 50px;
+}
+
+.subscriptions-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    background-color: #F3F3F7;
+    border-radius: 25px;
+    padding: 25px;
+}
+
+.subscriptions-list-container {
+    display: flex;
+    gap: 50px;
+    width: 80%;
+    height: 100%;
+}
+
+.follow-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+    width: 60%;
+    border-radius: 25px;
+    padding: 0 25px;
+    margin: 0;
+}
+
+.subscriptions-list {
+    width: 100%;
+    list-style: none;
+}
+
+.subscriptions-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    border-radius: 25px;
+    border: 1px solid #E7E7EF;
+    gap: 10px;
+    padding: 10px 25px;
+    font-size: 18px;
+}
+
+.subscriptions-item form {
+    margin: 0;
+}
+
+/* ---------- CREATE / EDIT REVIEWS AND TICKETS ---------- */
+
+.create-review-page, .create-ticket-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 50px;
+    gap: 50px;
+}
+
+.create-review, .create-ticket {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #F3F3F7;
+    border-radius: 25px;
+    padding: 25px;
+    margin: 50px;
+}
+
+.create-review-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    border-radius: 25px;
+    padding: 0 25px;
+    margin: 0;
+}
+
+.create-review-article {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    border-radius: 25px;
+    padding: 25px 50px;
+    gap: 10px;
+}
+
+.create-review-text {
+    margin: 0 0 20px 0;
+}
+
+.create-ticket-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    width: 60%;
+    border-radius: 25px;
+    padding: 0 25px;
+    margin: 0;
+}
+
+/* ---------- REVIEWS AND TICKETS DETAILS ---------- */
+
+.review, .ticket {
+    box-shadow: 0 0 5px #E7E7EF;
+    border: 1px solid #E7E7EF;
+}
+
+.review-details, .ticket-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    border-radius: 25px;
+    padding: 30px 60px;
+}
+
+.review-details-container, .ticket-details-container {
+    width: 100%;
+}
+
+.review-time, .ticket-time {
+    text-align: end;
+}
+
+.review-ticket-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60%;
+    font-size: 14px;
+    padding: 25px;
+    border-radius: 25px;
+}
+
+.review-ticket-details p {
+    margin: 0;
+}
+
+.review-ticket-image {
+    object-fit: cover;
+    width: 100px;
+}
+
+.ticket-user {
+    font-size: 14px;
+}
+
+.ticket-description {
+    display: flex;
+    gap: 20px;
+}
+
+.ticket-description-text {
+    text-align: justify;
+}
+
+.ticket-description-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.ticket-image {
+    object-fit: cover;
+    width: 200px;
+}
+
+/* ---------- PAGINATION ---------- */
+
+.pagination a {
+    color: #30344B;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
 }

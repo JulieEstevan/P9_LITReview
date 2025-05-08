@@ -1,6 +1,26 @@
-<h3>{{ post.title }}</h3>
-<small>{{ post.time_created }}</small>
-<p>{{ post.description }}</p>
-{% if post.image %}
-    <img src="{{ post.image.url }}" alt="Image de la couverture du livre / article">
-{% endif %}
+<article class="ticket-details ticket">
+    <div class="ticket-details-container">
+        <small class="ticket-time">{{ post.time_created }}</small>
+        {% if post.user == user %}
+            <p>Vous avez demandé une critique</p>
+        {% else %}
+            <p>{{ post.user }} a demandé une critique</p>
+        {% endif %}
+        <h3 class="article-title">{{ post.title }}</h3>
+    </div>
+    <div class="ticket-description">
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="Image de la couverture du livre / article" class="ticket-image">
+        {% endif %}
+        <p class="ticket-description-text">
+            <strong class="ticket-description-title">Description</strong><br>
+            {{ post.description }}
+        </p>
+    </div>
+    {% if request.get_full_path == '/posts/' %}
+        <div class="posts-button-container">
+            <a href="{% url 'edit_ticket' post.id %}" class="button">Modifier</a>
+            <a href="{% url 'delete_ticket' post.id %}" class="button">Supprimer</a>
+        </div>
+    {% endif %}
+</article>

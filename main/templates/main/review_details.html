@@ -1,12 +1,32 @@
-<h3>{{ post.headline }}</h3>
-<p>{{ post.rating }}/5</p>
-<small>{{ post.time_created }}</small>
-<p>{{ post.body }}</p>
-<div>
-    <p>Ticket - {{ post.ticket.user }}</p>
-    <h4>{{ post.ticket.title }}</h4>
-    {% if post.ticket.image %}
-        <img src="{{ post.ticket.image.url }}" alt="Image de la couverture du livre / article">
+<article class="review-details review">
+    <div class="review-details-container">
+        <small class="review-time">{{ post.time_created }}</small>
+        {% if post.user == user %}
+            <p>Vous avez écrit une critique</p>
+        {% else %}
+            <p>{{ post.user }} a écrit une critique</p>
+        {% endif %}
+        <h3 class="article-title">{{ post.headline }}</h3>
+        <strong> {% if post.rating == 1 %} ★
+            {% elif post.rating == 2 %} ★★ 
+            {% elif post.rating == 3 %} ★★★ 
+            {% elif post.rating == 4 %} ★★★★ 
+            {% elif post.rating == 5 %} ★★★★★ 
+            {% endif %}
+        </strong>
+        <p>{{ post.body }}</p>
+    </div>
+    <div class="review-ticket-details ticket">
+        <p>Ticket - {{ post.ticket.user }}</p>
+        <h4>{{ post.ticket.title }}</h4>
+        {% if post.ticket.image %}
+            <img src="{{ post.ticket.image.url }}" alt="Image de la couverture du livre / article" class="review-ticket-image">
+        {% endif %}
+    </div>
+    {% if request.get_full_path == '/posts/' %}
+        <div class="posts-button-container">
+            <a href="{% url 'edit_review' post.id %}" class="button">Modifier</a>
+            <a href="{% url 'delete_review' post.id %}" class="button">Supprimer</a>
+        </div>
     {% endif %}
-    <p>{{ post.ticket.description }}</p>
-</div>
+</article>

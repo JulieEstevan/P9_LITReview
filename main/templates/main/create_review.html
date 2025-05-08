@@ -1,35 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main>
-        <h2>Creer une critique</h2>
-        <form method="POST" action="{% url 'create_review' %}" enctype="multipart/form-data">
+<main class="create-review-page">
+    <section class="create-review">
+        <h2 class="section-title">Créer une critique</h2>
+        <form method="POST" action="{% url 'create_review' %}" enctype="multipart/form-data" autocomplete="off" class="create-review-form">
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
             {% csrf_token %}
-            <article>
-                <h3>Livre/Article</h3>
-                <label for="id_title">Titre :</label>
-                {{ ticket_form.title }}<br>
-                <label for="id_description">Description :</label>
-                {{ ticket_form.description }}<br>
-                <label for="id_image">Image (optionnel) :</label>
-                {{ ticket_form.image }}<br>
+            <article class="create-review-article ticket">
+                <h3 class="article-title">Livre/Article</h3>
+                <label for="id_title">Titre</label>
+                {{ ticket_form.title }}
+                <label for="id_description">Description</label>
+                {{ ticket_form.description }}
+                <label for="id_image">Image (optionnel)</label>
+                {{ ticket_form.image }}
             </article>
-            <article>
-                <h3>Critique</h3>
+            <article class="create-review-article">
+                <h3 class="article-title">Critique</h3>
                 <label for="id_headline">Titre :</label>
-                {{ form.headline }}<br>
+                {{ form.headline }}
                 <label for="id_rating">Note :</label>
                 <select name="rating" id="id_rating" required>
                     <option value="" disabled selected>Choisissez une note</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select><br>
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
+                    <option value="3">★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
+                </select>
                 <label for="id_body">Critique :</label>
-                {{ form.body }}<br>
-            <button type="submit">Envoyer</button>
+                {{ form.body }}
             </article>
+            <button type="submit" class="button">Envoyer</button>
         </form>
-    </main>
+    </section>
+</main>
 {% endblock content %}

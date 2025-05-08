@@ -1,28 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main>
-        <section>
-            <h2>Vos posts</h2>
-            {% if not posts %}
-                <p>Aucun post trouvé.</p>
-            {% else %}
-                {% for post in posts %}
-                    <article>
-                        {% if post.post_type == 'ticket' %}
-                            <p>Vous avez publié un ticket</p>
-                            {% include './ticket_details.html' %}
-                            <a href="{% url 'edit_ticket' post.id %}">Modifier</a>
-                            <a href="{% url 'delete_ticket' post.id %}">Supprimer</a>
-                        {% elif post.post_type == 'review' %}
-                            <p>Vous avez publié une critique</p>
-                            {% include './review_details.html' %}
-                            <a href="{% url 'edit_review' post.id %}">Modifier</a>
-                            <a href="{% url 'delete_review' post.id %}">Supprimer</a>
-                        {% endif %}
-                    </article>
-                {% endfor %}
-                {% include './pagination.html' %}
-            {% endif %}
-        </section>
-    </main>
+<main class="posts-page">
+    <section class="posts">
+        <h2>Vos posts</h2>
+        {% if not posts %}
+            <p>Aucun post trouvé.</p>
+        {% else %}
+            {% for post in posts %}
+                {% if post.post_type == 'ticket' %}
+                    {% include './ticket_details.html' %}
+                {% elif post.post_type == 'review' %}
+                    {% include './review_details.html' %}
+                {% endif %}
+            {% endfor %}
+            {% include './pagination.html' %}
+        {% endif %}
+    </section>
+</main>
 {% endblock content %}

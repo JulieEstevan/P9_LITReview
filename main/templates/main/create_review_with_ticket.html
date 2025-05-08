@@ -1,42 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main>
-        <h2>Creer une critique</h2>
-        <form method="POST" action="{% url 'create_review_with_ticket' ticket.id %}" enctype="multipart/form-data">
+<main class="create-review-page">
+    <section class="create-review">
+        <h2 class="section-title">Créer une critique</h2>
+        <form method="POST" action="{% url 'create_review_with_ticket' ticket.id %}" enctype="multipart/form-data" autocomplete="off" class="create-review-form">
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
             {% csrf_token %}
-            <article>
-                <p>Vous êtes en train de poster en réponse à</p>
-                <div>
+            <article class="create-review-article">
+                <p class="create-review-text">Vous êtes en train de poster en réponse à</p>
+                <div class="ticket-details ticket">
+                    <small class="ticket-time">{{ ticket.time_created }}</small>
                     {% if ticket.user == user %}
-                        <p>Vous avez demandé une critique</p>
+                        <p class="ticket-user">Vous avez demandé une critique</p>
                     {% else %}
-                        <p>{{ ticket.user }} a demandé une critique</p>
+                        <p class="ticket-user">{{ ticket.user }} a demandé une critique</p>
                     {% endif %}
-                    <h3>{{ ticket.title }}</h3>
-                    <small>{{ ticket.time_created }}</small>
-                    <p>{{ ticket.description }}</p>
+                    <h3 class="article-title">{{ ticket.title }}</h3>
+                    <div class="ticket-description">
                     {% if ticket.image %}
-                        <img src="{{ ticket.image.url }}" alt="Image de la couverture du livre / article">
+                        <img src="{{ ticket.image.url }}" alt="Image de la couverture du livre / article" class="ticket-image">
                     {% endif %}
+                        <p class="ticket-description-text">
+                            <strong class="ticket-description-title">Description</strong><br>
+                            {{ ticket.description }}
+                        </p>
+                    </div>
                 </div>
             </article>
-            <article>
-                <h3>Critique</h3>
+            <article class="create-review-article">
+                <h3 class="article-title">Critique</h3>
                 <label for="id_headline">Titre :</label>
-                {{ form.headline }}<br>
+                {{ form.headline }}
                 <label for="id_rating">Note :</label>
                 <select name="rating" id="id_rating" required>
                     <option value="" disabled selected>Choisissez une note</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select><br>
+                    <option value="1">★</option>
+                    <option value="2">★★</option>
+                    <option value="3">★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="5">★★★★★</option>
+                </select>
                 <label for="id_body">Critique :</label>
-                {{ form.body }}<br>
-                <button type="submit">Envoyer</button>
+                {{ form.body }}
+                <button type="submit" class="button">Envoyer</button>
             </article>
         </form>
-    </main>
+    </section>
+</main>
 {% endblock content %}

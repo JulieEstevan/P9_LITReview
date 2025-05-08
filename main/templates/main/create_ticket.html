@@ -1,16 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
-    <main>
-        <h2>Creer un ticket</h2>
-        <form method="POST" action="{% url 'create_ticket' %}" enctype="multipart/form-data">
+<main class="create-ticket-page">
+    <section class="create-ticket">
+        <h2 class="section-title">Creer un ticket</h2>
+        <form method="POST" action="{% url 'create_ticket' %}" enctype="multipart/form-data" autocomplete="off" class="create-ticket-form">
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
             {% csrf_token %}
             <label for="id_title">Titre :</label>
-            {{ form.title }}<br>
+            {{ form.title }}
             <label for="id_description">Description :</label>
-            {{ form.description }}<br>
+            {{ form.description }}
             <label for="id_image">Image :</label>
-            {{ form.image }}<br>
-            <button type="submit">Envoyer</button>
+            {{ form.image }}
+            <button type="submit" class="button">Envoyer</button>
         </form>
-    </main>
+    </section>
+</main>
 {% endblock content %}
