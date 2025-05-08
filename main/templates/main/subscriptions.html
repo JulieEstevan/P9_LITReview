@@ -8,7 +8,7 @@
         {% endif %}
         <form method="POST" action="{% url 'subscriptions' %}" autocomplete="off" class="follow-form">
             {% csrf_token %}
-            <label for="username" class="hidden">Nom d'utilisateur :</label>
+            <label for="id_username" class="hidden">Nom d'utilisateur :</label>
             {{ form.username }}
             <button type="submit" class="button">Suivre</button>
         </form>

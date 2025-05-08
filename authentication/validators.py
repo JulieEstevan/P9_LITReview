@@ -1,6 +1,10 @@
 from django.core.exceptions import ValidationError
 
+
 class ContainsLetterValidator:
+    """
+    Validator that checks whether the password contains at least one letter.
+    """
     def validate(self, password, user=None):
         if not any(char.isalpha() for char in password):
             raise ValidationError(

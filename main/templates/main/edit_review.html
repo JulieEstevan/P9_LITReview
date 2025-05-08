@@ -10,20 +10,20 @@
             {% csrf_token %}
             <article class="create-review-article">
                 <p class="create-review-text">Vous êtes en train de poster en réponse à</p>
-                <div class="ticket-details ticket">
+                <div class="create-review-ticket-details ticket">
                     <small class="ticket-time">{{ form.instance.ticket.time_created }}</small>
                     {% if form.instance.ticket.user == user %}
                         <p class="ticket-user">Vous avez demandé une critique</p>
                     {% else %}
                         <p class="ticket-user">{{ form.instance.ticket.user }} a demandé une critique</p>
                     {% endif %}
-                    <h3 class="article-title">{{ form.instance.ticket.title }}</h3>
+                    <h3 class="create-review-ticket-title">{{ form.instance.ticket.title }}</h3>
                     <div class="ticket-description">
                     {% if form.instance.ticket.image %}
-                        <img src="{{ form.instance.ticket.image.url }}" alt="Image de la couverture du livre / article" class="ticket-image">
+                        <img src="{{ form.instance.ticket.image.url }}" alt="Image de la couverture du livre / article" class="review-ticket-image">
                     {% endif %}
-                        <p class="ticket-description-text">
-                            <strong class="ticket-description-title">Description</strong><br>
+                        <p class="review-ticket-description-text">
+                            <strong>Description</strong><br>
                             {{ form.instance.ticket.description }}
                         </p>
                     </div>
@@ -47,6 +47,5 @@
                 <button type="submit" class="button">Envoyer</button>
             </article>
         </form>
-    </section>
 </main>
 {% endblock content %}

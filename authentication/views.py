@@ -4,7 +4,9 @@ from django.conf import settings
 
 from . import forms
 
+
 def signup_page(request):
+    """Render the signup page."""
     form = forms.SignupForm()
     if request.method == "POST":
         form = forms.SignupForm(request.POST)

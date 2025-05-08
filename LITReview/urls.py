@@ -24,13 +24,22 @@ import authentication.views
 import main.views
 
 urlpatterns = [
+    # Admin URL
+    # This URL is used to access the Django admin interface.
     path('admin/', admin.site.urls),
+    # Authentication URLs
+    # These URLs are used for user authentication, including login, logout, and signup.
+    # The login URL uses a custom template and redirects authenticated users to the home page.
     path('', LoginView.as_view(
         template_name='authentication/login.html',
         redirect_authenticated_user=True,
     ), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/', authentication.views.signup_page, name='signup'),
+
+    # Main URLs
+    # These URLs are used for the main functionality of the application,
+    # including viewing and managing tickets and reviews.
     path('home/', main.views.home, name='home'),
     path('posts/', main.views.posts, name='posts'),
     path('subscriptions/', main.views.subscriptions, name='subscriptions'),
@@ -44,6 +53,7 @@ urlpatterns = [
     path('delete_review/<int:review_id>', main.views.delete_review, name='delete_review'),
 ]
 
+# Serve static and media files in development
 if settings.DEBUG:
     urlpatterns += static(
         settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

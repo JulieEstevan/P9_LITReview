@@ -134,9 +134,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.User'  # Use the custom user model
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'login'  # URL for the login page
 LOGIN_REDIRECT_URL = 'home'  # Redirect to the home page after login
 LOGOUT_REDIRECT_URL = LOGIN_URL  # Redirect to the login page after logout
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR.joinpath('media/')
+MEDIA_URL = '/media/'  # URL to access media files
+MEDIA_ROOT = BASE_DIR.joinpath('media/')  # Directory to store uploaded media files

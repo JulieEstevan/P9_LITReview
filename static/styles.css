@@ -25,9 +25,7 @@ body {
     color: #30344B;
 }
 
-.hidden {
-    display: none;
-}
+
 
 input, textarea, input[type=file] {
     display: flex;
@@ -82,6 +80,10 @@ option {
     display: flex;
     justify-content: center;
     background-color: #202332;
+}
+
+.header-offline h1, .header-offline i {
+    color: white;
 }
 
 .header-online {
@@ -140,11 +142,11 @@ option {
 
 .login-page {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .login-page section {
-    width: 30%;
+    width: 35%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -160,7 +162,7 @@ option {
     flex-direction: column;
     align-items: center;
     width: 80%;
-    gap: 15px;
+    gap: 5px;
 }
 
 /* ---------- SIGNUP PAGE ---------- */
@@ -273,11 +275,16 @@ option {
 .follow-form {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     gap: 15px;
-    width: 60%;
+    width: 100%;
     border-radius: 25px;
     padding: 0 25px;
+    margin: 0;
+}
+
+.follow-form input {
+    width: 60%;
     margin: 0;
 }
 
@@ -351,6 +358,31 @@ option {
     margin: 0 0 20px 0;
 }
 
+.create-review-ticket-details {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    border-radius: 25px;
+    padding: 25px 50px;
+    gap: 10px;
+}
+
+.create-review-ticket-details p {
+    margin: 0;
+}
+
+.create-review-ticket-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}
+
+.review-ticket-description-text {
+    margin: 0 0 20px 0;
+    font-size: 14px;
+}
+
 .create-ticket-form {
     display: flex;
     justify-content: center;
@@ -413,10 +445,6 @@ option {
 .ticket-description {
     display: flex;
     gap: 20px;
-}
-
-.ticket-description-text {
-    text-align: justify;
 }
 
 .ticket-description-title {

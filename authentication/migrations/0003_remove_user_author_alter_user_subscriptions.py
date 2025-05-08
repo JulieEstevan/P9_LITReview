@@ -19,6 +19,10 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='user',
             name='subscriptions',
-            field=models.ManyToManyField(blank=True, related_name='subscribers', through='main.UserFollows', to=settings.AUTH_USER_MODEL),
+            field=models.ManyToManyField(
+                blank=True,
+                related_name='subscribers',
+                through='main.UserFollows',
+                to=settings.AUTH_USER_MODEL),
         ),
     ]
